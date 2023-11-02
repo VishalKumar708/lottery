@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/lottery/lottery/db.sqlite3" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="5654"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainauth_group"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT lotteryNumber, userName,SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 12 and strftime(&quot;%Y&quot;,orderMonth)=2022 THEN amount ELSE 0 END) AS December2022,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 01 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS Januaray2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 02 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS February2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 03 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS March2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 04 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS April2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 05 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS May2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 06 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS June2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 07 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS July2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 08 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS August2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 09 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS September2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 10 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS October2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 11 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS November2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 12 and strftime(&quot;%Y&quot;,orderMonth)=2023 THEN amount ELSE 0 END) AS December2023,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 01 and strftime(&quot;%Y&quot;,orderMonth)=2024 THEN amount ELSE 0 END) AS Januaray2024,
+SUM(CASE WHEN strftime(&quot;%m&quot;,orderMonth) = 02 and strftime(&quot;%Y&quot;,orderMonth)=2024 THEN amount ELSE 0 END) AS February2024
+-- (SELECT (CASE WHEN sum(amount) &gt; 0 THEN sum(amount) ELSE 0 END) FROM kitty_lotterypayment WHERE kitty_lotterypayment.lotteryUserMappingId_id = kitty_lotteryusermapping.id) AS total_amount
+FROM kitty_lotteryusermapping
+LEFT JOIN kitty_lotterypayment ON  kitty_lotteryusermapping.id = kitty_lotterypayment.lotteryUserMappingId_id
+GROUP BY kitty_lotteryusermapping.id;
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

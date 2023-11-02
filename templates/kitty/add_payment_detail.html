@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Payment Record In Bulk</title>
+
+    <style>
+        /* Add these styles to your CSS file (e.g., forms.css) */
+
+/* Style the form control */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style the select input */
+.form-control select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style placeholders in input fields */
+.form-control::placeholder {
+    color: #999; /* Customize the placeholder text color */
+}
+
+/* Style the form labels */
+label {
+    font-weight: bold;
+}
+
+/* Style the submit button (if present) */
+button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style form errors (if using Django form errors) */
+.errorlist {
+    color: red;
+}
+.main-container {
+    margin: 2%;
+    width: 96%; /* 100% - 2% (left) - 2% (right) */
+    /* Additional styles for your main-container if needed */
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Text color */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 22px; /* Text size */
+    cursor: pointer; /* Change cursor to a hand pointer on hover */
+    transition: background-color 0.3s; /* Add a smooth transition for background color changes */
+}
+
+/* Hover effect for the submit button */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Change the background color on hover */
+}
+
+/* Animation when the button is pressed */
+input[type="submit"]:active {
+    transform: scale(0.95); /* Shrink the button when pressed */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+    <h2 align="center">Add Payment Record In Bulk</h2>
+    {% comment %} {% endcomment %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
+
+
+
