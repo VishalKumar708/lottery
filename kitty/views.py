@@ -162,14 +162,14 @@ class PivotTable(View):
     FROM kitty_lotteryusermapping
     LEFT JOIN kitty_lotterypayment ON  kitty_lotteryusermapping.id = kitty_lotterypayment.lotteryUserMappingId_id
     where kitty_lotteryusermapping.lotteryId_id={lottery_id}
-    GROUP BY kitty_lotteryusermapping.id;
+    GROUP BY kitty_lotteryusermapping.id order by lotteryNumber;
     """
         sql_query2 += f"""(SELECT SUM(discount) from kitty_lotteryusermapping where kitty_lotteryusermapping.lotteryId_id={lottery_id}) as Discount,
         (SELECT sum(gift) from kitty_lotteryusermapping where kitty_lotteryusermapping.lotteryId_id={lottery_id}) as Gift,
         SUM(amount) FROM kitty_lotterypayment
     LEFT JOIN kitty_lotteryusermapping ON  kitty_lotteryusermapping.id = kitty_lotterypayment.lotteryUserMappingId_id
     where kitty_lotteryusermapping.lotteryId_id={lottery_id}
-    GROUP BY kitty_lotteryusermapping.lotteryId_id;
+    GROUP BY kitty_lotteryusermapping.lotteryId_id order by lotteryNumber;
     """
         sql_queries.append(sql_query1)
         sql_queries.append(sql_query2)

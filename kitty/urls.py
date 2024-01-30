@@ -6,3 +6,4 @@ urlpatterns = [
     path('pivotTable/<slug:lottery_id>/', PivotTable.as_view(), name='pivotTable'),
     path('showDetailsOfPendingAmount/', showDetailsOfPendingAmount.as_view(), name='showDetailsOfPendingAmount')
 ]
+

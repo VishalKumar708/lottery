@@ -69,6 +69,11 @@ class LotteryUserMapping(BaseModel):
             try:
                 user_obj = User.objects.get(id=self.userId.id)  # Get the ID of the associated User
                 self.userName = user_obj.name
+                if self._state.adding:  # Check if the instance is being created (POST)
+                    self.createdBy = user_obj
+                else:  # Instance is being updated (PUT)
+                    self.updatedBy = user_obj
+
             except User.DoesNotExist:
                 raise ValueError({'userId': ['Please enter a valid userId.']})
 
@@ -88,8 +93,4 @@ class LotteryPayment(BaseModel):
     amount = models.FloatField()
     orderMonth = models.DateField()
     paymentMode = models.CharField(max_length=1, choices=PAYMENT_MODE)
-
-
-
-
 # Create your models here.
