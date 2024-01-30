@@ -71,8 +71,8 @@ admin.site.register(LotteryUserMapping, LotteryUserMappingAdmin)
 
 class LotteryPaymentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     # list_display = ['id', 'lotteryUserMappingId', 'amount', 'orderMonth', 'paymentMode', 'isActive', 'groupId', 'createdBy', 'updatedBy', 'createdDate', 'updatedDate']
-    list_display = ['id', 'lottery_number', 'lottery_id', 'user_name', 'lotteryUserMappingId', 'amount', 'orderMonth', 'paymentMode', 'isActive', 'groupId', 'createdBy', 'updatedBy', 'createdDate', 'updatedDate']
-    list_filter = ('lotteryUserMappingId__lotteryNumber', 'lotteryUserMappingId__lotteryId')
+    list_display = ['id', 'lottery_number', 'lottery_id', 'userId', 'user_name', 'lotteryUserMappingId', 'amount', 'orderMonth', 'paymentMode', 'isActive', 'groupId', 'createdBy', 'updatedBy', 'createdDate', 'updatedDate']
+    list_filter = ('lotteryUserMappingId__lotteryNumber', 'lotteryUserMappingId__lotteryId', 'lotteryUserMappingId__userId')
     list_per_page = 150
     readonly_fields = ['lotteryUserMappingId']
 
@@ -89,6 +89,9 @@ class LotteryPaymentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     def user_name(self, obj):
         return obj.lotteryUserMappingId.userName if obj.lotteryUserMappingId else None
+
+    def userId(self, obj):
+        return obj.lotteryUserMappingId.userId if obj.lotteryUserMappingId else None
 
     lottery_number.short_description = 'Lottery Number'
     lottery_id.short_description = 'Lottery ID'
